@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class TestOpenCloseSave{
+    
+    public static void openFilePlease(){
+        Scanner console = new Scanner(System.in);
+        
+        try{
+        File file = new File(".unlocker");
+        file.createNewFile();
+        //ProcessBuilder pb = new ProcessBuilder("Notepad.exe", "Test.txt");
+       // pb.start();
+        
+      //  Runtime run = Runtime.getRuntime(); 
+       // Process pp=run.exec("Notepad.exe"+" MineSweeper.txt");
+
+        String close = "nope";
+        do{
+            System.out.print("please save the file. Once you save the file please type DONE");   
+            close = console.nextLine();
+        } while(!close.equalsIgnoreCase("done"));
+        
+            
+          //pp.destroy();
+       
+          
+        
+       }catch(IOException ioe){
+            System.exit(-1);
+       }
+    }
+    
+    
+    
+    
+    
+    public static void main(String [] args){
+        
+        openFilePlease();
+        
+        //test for returning after the game is lost
+        String[]arr = new String [1];
+        arr[0] = "B";
+        System.out.println("arr[0] before: " + arr[0]);
+        arr[0] = "["+arr[0] +"]";
+        System.out.println("arr[0] after: " + arr[0]);
+    }
+}

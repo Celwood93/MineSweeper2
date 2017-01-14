@@ -1,0 +1,261 @@
+import java.util.*;
+import java.io.*;
+
+public class MineSweeper{
+    
+    
+    public static void main(String[] args){
+        Random generator = new Random();
+        test(generator);
+    }
+    
+    
+    public static void promptUser(){
+        
+        
+        
+        Scanner console = new Scanner(System.in);
+        String ansOne = " ";
+        System.out.print("Would you like to play a game of minesweeper? Type 00 if you dont\n");
+        ansOne = console.nextLine();
+        if(ansOne.equals("00")){
+            System.exit(1);
+        }
+        System.out.print("Type \"small board\", \"medium board\", or \"large board.\" to choose your size");
+        String ansTwo = " ";
+        ansTwo = console.nextLine();
+        while(!(ansTwo.equalsIgnoreCase("small board") || ansTwo.equalsIgnoreCase("medium board") || ansTwo.equalsIgnoreCase("large board"))){
+            System.out.print("please type either \"small board\", \"medium board\", or \"large board.\" to choose your size");
+        }
+        
+            
+    }
+    public static void makeBox(Random generator, String boxSize){
+        int x = 0;
+        int y = 0;
+        int z = 0;
+        if(boxSize.equalsIgnoreCase("small board")){
+            x=5;
+            y=5;
+            
+        }else if(boxSize.equalsIgnoreCase("medium board")){
+            x=10;
+            y=10;
+        }else if(boxSize.equalsIgnoreCase("large board")){
+            x=20;
+            y=20;
+        }
+        
+        for(int i=0;i<(x+1);i++){
+          
+            System.out.println("");
+            if(i!=0){
+                if(i<10){
+                    System.out.print(i+"  ");
+                }else{
+             System.out.print(i+" ");
+                }
+            }
+            for(int j=0; j<y;j++){
+                if(i==0){
+                    System.out.print(" ");
+                    for(int k=1;k<(y+1);k++){
+                        if(k<10){
+                        System.out.print("   "+(k));  
+                        }else{
+                            System.out.print("  "+(k));
+                        }
+                    }
+                    break;
+                }
+               
+                System.out.print("[" + "] ");
+                
+            }
+        }
+    }
+    
+    
+    public static int randomBomb(Random generator, int length){
+        
+        int i=0;
+        i=generator.nextInt(length);
+        return i;
+    }
+    
+            
+        public static void bombSpotsAndNumbers(int length, Random generator){
+            
+            //Variables being declared with a full scope
+            
+            int bombNumber =0;
+            int k = 0;
+            int j = 0;
+            int i = 0;
+            int n = 0;
+            int p = 0;
+            int q = 0;
+            int pOne=0;
+            int qOne=0;
+           
+            //Creating the return string that will store the meat of the game (Bombs and numbers)
+            
+            String[][]fillTable = new String[length][length];
+          //   System.out.println("test5");
+          
+            // This loop is for i, which is the y axis of the game board
+            
+             for(i=0;i<length;i++){
+                 
+                 //this loop is for j, which is the x acis of the game board
+                 
+                 for(j=0;j<length;j++){
+                     
+                     //null was being difficult so i just made it a space
+                     
+                     fillTable[i][j]=" ";
+                 }
+             }
+            // System.out.println("test6");
+             
+             //This loop will create bomb locations based on how big the board will be. if the x-axis is 7 wide, then
+             //The board will have 7 bombs.
+             
+            for(i=0;i<length;i++){
+                //random function being called to produce a value
+                 k = randomBomb(generator, length);
+             //    System.out.print(k);
+                 
+                 n = randomBomb(generator, length);
+              //   System.out.print(n);
+                 
+                 //Test loop to see if a bomb already exists at the random location
+                 
+                 if(fillTable[k][n] == " "){
+                     
+                    fillTable[k][n] = "b";
+                     
+                }
+            }
+            //this loop will go through the x-axis of the table, checking to see how many bombs surround each location
+            
+            for(i=0;i<length;i++){
+             //   System.out.println("testI"+i);
+                //This loop is the y-axis location of the table, together with the x-axis it checks for all bombs in the
+                //surrounding area
+                for(n=0;n<length;n++){
+                  //  System.out.println("testN"+n);
+                  //  fillTable[0][1] = "b";
+                 //   fillTable[0][3] = "b";
+                //   fillTable[2][1] = "b";
+                //   fillTable[3][1] = "b";
+                    //h is the variable that defines what the number in each square will be. if its 0 there is no value
+                    //and it can go to eight. it is defined here because its scope is within the y-axis loop
+                    int h =0;
+                    //each of these checks are for when the values of the array exceed the scope of the area (-1 
+                    // or greater then length -1 ushally)
+                     
+                    int check =  0;
+                    int check2 = 0;
+                    int check3 = 0;
+                    int check4 = 0;
+                    //this if loop checks to make sure that the location that is to be tested doesnt have a bomb in it
+                    //if it does have a bomb it just skips it
+                    if(!(fillTable[i][n].equals("b"))){
+                      //  System.out.println("test3");
+                    //j is defined as one because its used in other loops that are outside this scope
+                    j=1;
+                    //these test are for when i is 0 or n is 0 and becomes -1 or when the values become greater then the
+                    //length of the array
+                    p = i-j;
+                    pOne = i+j;
+                    qOne = n+j;
+                    q = n-j;
+                    
+                    //these if loops all change the situations to become either length -1 for when it exceeds (goes past) the bounds
+                    //of the array or 0 if it falls off (goes bellow) the bounds of the array. 
+                    
+                    if(pOne==length){
+                        pOne = length - 1;
+                      
+                        check = 1;
+                    }
+                    if(qOne == length){
+                        qOne = length - 1;
+                        check2 = 1;
+                    }
+                     if(p<0){
+                         check3 =1;
+                        p=0;
+                     }
+                    if(q<0){
+                        check4 =1;
+                        q=0;
+                     }
+                  //  System.out.println("test4");
+                    
+                         
+                     //this tests to see if there is a bomb at the spot at one of the 8 places around the target location
+                    //if there is a bomb spot it will increase the integer value there by 1. it also checks
+                    //to make sure that the checks for p q pone and qone have all been passed
+                    
+                         if(fillTable[pOne][n].equals("b") && check!=1){
+                             h++;
+                         }
+                         if(fillTable[pOne][q].equals("b") && check!=1 && check4!=1 ){
+                             h++;
+                         }
+                         if(fillTable[p][q].equals("b") && check3!=1 && check4!=1){
+                             h++;
+                         }
+                         if(fillTable[p][qOne].equals("b") && check3!=1 && check2!=1){
+                             h++;
+                         }
+                         if(fillTable[pOne][qOne].equals("b") && check!=1 && check2!=1){
+                             h++;
+                         }
+                         if(fillTable[p][n].equals("b") && check3!=1){
+                             h++;
+                         }
+                         if(fillTable[i][qOne].equals("b") && check2!=1){
+                             h++;
+                         }
+                         if(fillTable[i][q].equals("b") && check4!=1){
+                             h++;
+                         }
+                     
+                    //this just fills the table with a space. it needs to fill it because the else statment for +h would
+                    // make the secions without any nearby bombs zero instead of a space, which would look stupid.
+                         if(h==0){
+                             fillTable[i][n] = " ";
+                         }else{
+                         fillTable[i][n] = ""+h;
+                         
+                      //   System.out.println("none bomb: " +h);
+                           }
+                     }
+                    }
+                
+            //this just prints a compy of the table to make sure it works
+           
+            for(int y=0;y<length;y++){
+                
+                 for(int x=0;x<length;x++){
+                    System.out.print(fillTable[y][x]);
+                 }
+                 System.out.println("");
+            }
+        
+        }    
+        }
+            
+            
+    //this is a test run, where its easy to manipulate numbers without messing with the user inputs.
+    public static void test(Random generator){
+       String answer = "small board";
+    makeBox(generator, answer); 
+    bombSpotsAndNumbers(4,generator);
+    }
+    
+    
+}

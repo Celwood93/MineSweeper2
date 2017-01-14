@@ -1,0 +1,33 @@
+import java.util.*;
+import java.nio.file.Files;
+import java.io;
+import java.awt.*;
+
+public class CopyTest{
+    
+    
+    public static void main(String [] args){
+        
+        copyFile();
+    }
+    
+    public static void copyFile(){
+        
+        
+    try{
+                    System.out.println("check 2"); 
+                    File fileTwo = new File("MineSweeper.txt");
+                    File file = new File("MineSweeperHold.txt");
+                    file.createNewFile();
+                    System.out.println("check 3"); 
+                 
+                         
+                       //  File.copy("MineSweeper.txt", "MineSweeperHold.txt");
+                         Files.copy(fileTwo.toPath(), file.toPath());
+                     }catch(IOException ioe){
+                         System.out.println("check 4"); 
+                         System.exit(-1);
+                     }
+    }
+}
+    
