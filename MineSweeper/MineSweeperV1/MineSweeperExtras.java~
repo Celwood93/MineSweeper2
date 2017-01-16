@@ -929,17 +929,5 @@ public static void loopRecursion(int xPoint, int yPoint, String [][]arrMineExpan
                     System.out.print("You lose. Game lasted " + (gameCounter-1) + " turns before you lost. Good luck next time");
                     
                 }
-                
-                
-            }   
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    }      
     }
