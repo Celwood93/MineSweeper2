@@ -1,0 +1,13 @@
+12
+testEasy1.txt
+testEasy2.txt
+testEasy3.txt
+testMedium1.txt
+testMedium2.txt
+testMedium3.txt
+testHard1.txt
+testHard2.txt
+testHard3.txt
+testCustom1.txt
+testCustom2.txt
+testCustom3.txt
