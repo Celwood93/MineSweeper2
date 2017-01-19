@@ -1,2 +1,3 @@
 *.class
-*.docx MineSweeperV2/
+*.docx
+*.doc
