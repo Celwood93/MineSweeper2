@@ -124,9 +124,9 @@ public class MineSweeperInstance{
 		for(int i = -1; i < 2; i++){
 			for (int j = -1; j < 2; j++){
 				try{
-					if((map[x+i][y+j].getValue() < 9 && map[x+i][y+j].getCellStatus() == 0)){
-						map[x+i][y+j].setCellStatus(1);
-						if(map[x+i][y+j].getValue() == 0){
+					if((map[x+i][y+j].getValue() < 9 && map[x+i][y+j].getCellStatus() == 0)){ //if value isnt a bomb and isnt visited
+						map[x+i][y+j].setCellStatus(1); //visited
+						if(map[x+i][y+j].getValue() == 0){ //if its empty recurse
 							updateMapRecursion(x+i, y+j);
 						}
 					}

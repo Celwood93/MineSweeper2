@@ -69,6 +69,7 @@ public class MSMapTesting{
 	
 	@Test
 	public void testInput0(){
+		
 		MSMap.makeMap(inputAssist(0));
 		int [][] testArr0 ={{1,2,1,2,9,9,2,9,1},
 							{9,2,9,2,2,2,2,1,1},
@@ -82,6 +83,7 @@ public class MSMapTesting{
 		Assert.assertEquals(testArr0, MSMap.getMapAsInt());
 		Assert.assertEquals(true, isCorrect(testArr0));
 	}
+	
 	@Test
 	public void testInput1(){
 		MSMap.makeMap(inputAssist(1));
@@ -314,7 +316,6 @@ public class MSMapTesting{
 		Assert.assertEquals(testArr11, MSMap.getMapAsInt());
 		Assert.assertEquals(true, isCorrect(testArr11));
 	}
-	
 	
 	
 	@After
