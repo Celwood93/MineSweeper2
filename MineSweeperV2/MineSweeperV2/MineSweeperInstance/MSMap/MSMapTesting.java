@@ -68,6 +68,51 @@ public class MSMapTesting{
 	}
 	
 	@Test
+	public void testReal(){
+		console = new Scanner(System.in);
+		MSData info = new MSData("10 10 20 0 2 ?");
+		MSMap.makeMap(info);
+		int [][] tester = MSMap.getMapAsInt();
+		Assert.assertEquals(true, isCorrect(tester));
+	}
+	
+	@Test
+	public void testReal2(){
+		console = new Scanner(System.in);
+		MSData info = new MSData("20 20 45 0 3 ?");
+		MSMap.makeMap(info);
+		int [][] tester = MSMap.getMapAsInt();
+		Assert.assertEquals(true, isCorrect(tester));
+	}
+	
+	@Test
+	public void testReal3(){
+		console = new Scanner(System.in);
+		MSData info = new MSData("6 6 10 0 1 ?");
+		MSMap.makeMap(info);
+		int [][] tester = MSMap.getMapAsInt();
+		Assert.assertEquals(true, isCorrect(tester));
+	}
+	
+	@Test
+	public void testReal4(){
+		console = new Scanner(System.in);
+		MSData info = new MSData("16 6 15 0 2 ?");
+		MSMap.makeMap(info);
+		int [][] tester = MSMap.getMapAsInt();
+		Assert.assertEquals(true, isCorrect(tester));
+	}
+	
+	@Test
+	public void testReal5(){
+		console = new Scanner(System.in);
+		MSData info = new MSData("6 16 15 0 2 ?");
+		MSMap.makeMap(info);
+		int [][] tester = MSMap.getMapAsInt();
+		Assert.assertEquals(true, isCorrect(tester));
+	}
+	
+	@Test
 	public void testInput0(){
 		
 		MSMap.makeMap(inputAssist(0));

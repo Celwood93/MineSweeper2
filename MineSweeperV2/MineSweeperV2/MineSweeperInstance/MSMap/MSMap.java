@@ -8,14 +8,47 @@ public class MSMap{
 			map = MSMapDriver.mapDriver(instance);
 			return map;
 		}
-		return null;
+		map = new CellHold[instance.getX()][instance.getY()];
+		int mapBombs = instance.getBombs();
+		
+		Random rand = new Random();
+		int x;
+		int y;
+		while(mapBombs != 0){
+			x = rand.nextInt(instance.getX());
+			y = rand.nextInt(instance.getY());
+			if(map[x][y] == null){
+				map[x][y] = new CellHold(9);
+				mapBombs--;
+			}
+		}
+		for(int i = 0; i < map.length; i++){
+			for(int j = 0; j < map[0].length; j++){
+				if(map[i][j] == null){
+					int value = 0;
+					for(int k = -1; k<2; k++){
+						for(int h = -1; h < 2; h++){
+							try{
+								if(map[i+k][j+h].getValue() == 9){
+									value++;
+								}
+							}catch(IndexOutOfBoundsException ioobe){}catch(NullPointerException npe){}
+						}
+					}
+					map[i][j] = new CellHold(value);
+				}
+			}
+		}
+		return map;
 	}
 	
 	public static int[][] getMapAsInt(){
 		int [][] arr = new int[map.length][map[0].length];
 		for(int i = 0; i < map.length; i++){
 			for(int j = 0; j < map[0].length; j++){
-				arr[i][j] = map[i][j].getValue();
+				if(map[i][j] != null){
+					arr[i][j] = map[i][j].getValue();
+				}
 			}
 		}
 		return arr;
@@ -35,7 +68,11 @@ public class MSMap{
 		for(int i = 0; i < map.length; i++){
 			str = str + "\n";
 			for(int j = 0; j < map[0].length; j++){
-				str = str + map[i][j].getValue();
+				if(map[i][j] != null){
+					str = str + map[i][j].getValue();
+				}else{
+					str = str + "0";
+				}
 			}
 		}
 		return str;

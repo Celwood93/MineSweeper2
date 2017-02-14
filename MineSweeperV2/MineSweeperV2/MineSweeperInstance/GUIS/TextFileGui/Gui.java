@@ -10,7 +10,7 @@ public class Gui{
 		instance.setY(15);
 	}
 	
-	public static boolean displayResult(CellHold [][] arr){
+	public static boolean displayResult(MSData instance){
 		return false;
 		
 	}

@@ -11,11 +11,12 @@ public class MineSweeperRunner{
 			scores = getHighScores();
 			Gui.promptGameData(instance, scores);
 			game = new MineSweeperInstance(instance);
+			//right here, set instance.setTime = clock time at the moment
 			game.run();
 			if(instance.won()){
 				updateHighScores(instance);
 			}
-			playing = Gui.displayResult(instance.getfMap());
+			playing = Gui.displayResult(instance);
 		}
 		
 		

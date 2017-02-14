@@ -70,7 +70,7 @@ public class MineSweeperInstance{
 	
 	public String checkPoint(CellHold point){
 		String message = "";
-		//checks to see that the point isnt already selected or some other error. if it has, it returns an error message, if not, it returns and empty string. reword later.
+		//checks to see that the point isnt already selected or some other error. if it has, it returns an error message, if not, it returns an empty string. reword later.
 		if((map[point.getX()][point.getY()].getCellStatus() == 0 && (point.getCellStatus() == 1|point.getCellStatus() == 2))|
 			(map[point.getX()][point.getY()].getCellStatus() == 2 && point.getCellStatus() == 3)){
 				//short cut
